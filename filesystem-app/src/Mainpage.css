@@ -1,0 +1,27 @@
+.upload {
+    position: absolute;
+    bottom: 1%; 
+    right: 1%; 
+    color: green;
+}
+
+.Header {
+    position: absolute;
+    top: 3%;
+    left: 55%;
+    font-size: 60px;
+    transform: translate(-50%, -50%);
+}
+
+.choosefile{
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+
+.toggle-sidebar-button{
+    color: blue;
+    background-color: transparent;
+}

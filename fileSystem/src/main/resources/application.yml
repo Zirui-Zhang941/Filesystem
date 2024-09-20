@@ -1,0 +1,23 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  cloud:
+    openfeign:
+      oauth2:
+        enabled: true
+  datasource:
+    url: jdbc:mysql://${DATABASE_URL:localhost}:3306/filesystem?createDatabaseIfNotExist=true
+#    url: jdbc:mysql://${DATABASE_URL:localhost}:3305/filesystem?createDatabaseIfNotExist=true
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:secret}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: "classpath:database-init.sql"
+
+logging:
+  level:
+    org.apache.coyote.http11.Http11InputBuffer: DEBUG # Incoming HTTP requests
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE #outgoing http requests
+    org.springframework.jdbc.core: DEBUG

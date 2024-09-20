@@ -1,0 +1,88 @@
+#####################################
+############### Setup ###############
+#####################################
+
+# Define the stages for the CI/CD pipeline: lint, static_analysis, unit_test, release
+stages:
+  - lint                # Linting stage: Check code for syntax and style issues
+  - static_analysis     # Static analysis stage: Perform additional code analysis if necessary
+  - unit_test           # Unit testing stage: Run unit tests to ensure individual components work correctly
+  - release             # Release stage: Build and release the application
+
+# Define a variable for the release tag
+variables:
+  RELEASE_TAG: release-$CI_PIPELINE_IID
+
+#####################################
+############## Linting ##############
+#####################################
+
+# Job for linting code in the lint stage
+lint:
+  stage: lint                         # Specify linting stage
+  image: node:14                      # Use Node.js 14 Docker image
+  before_script:
+    - npm install
+    - npm install eslint              # Install ESLint as a dependency
+    - npm install react
+    - npm install react-modal
+  script:
+    - npx eslint ...                  # Run ESLint to check code for syntax and style issues
+
+#####################################
+########## Static Analysis ##########
+#####################################
+
+# Job for static code analysis in the static_analysis stage
+static_analysis:
+  stage: static_analysis              # Specify static analysis stage
+  image: node:14                      # Use Node.js 14 Docker image
+  before_script:
+    - npm install eslint-plugin-react # Install additional dependencies if necessary
+  script:
+  
+    # Add commands for static code analysis if needed
+
+#####################################
+############## Testing ##############
+#####################################
+
+# Job for running unit tests in the unit_test stage
+unit_test:
+  stage: unit_test                    # Specify unit testing stage
+  image: node:14                      # Use Node.js 14 Docker image
+  before_script:
+    - npm install jest istanbul       # Install Jest and Istanbul as dependencies
+  script:
+    - jest ...                        # Run Jest for unit tests
+    - istanbul cover ...              # Generate code coverage report with Istanbul
+
+#####################################
+########## Build & Release ##########
+#####################################
+
+# Job for building and releasing the application in the release stage
+release:
+  stage: release                      # Specify release stage
+  image: node:14                      # Use Node.js 14 Docker image
+  script:
+    # Add commands for building and releasing the application
+    
+#####################################
+########## Build & Release ##########
+#####################################
+release:
+  stage: release
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE/backend:$RELEASE_TAG .
+    - docker tag $CI_REGISTRY_IMAGE/backend:$RELEASE_TAG $CI_REGISTRY_IMAGE/backend:latest
+    - docker push $CI_REGISTRY_IMAGE/backend:$RELEASE_TAG
+    - docker push $CI_REGISTRY_IMAGE/backend:latest
+  tags:
+    - dind
+  only:
+    - main

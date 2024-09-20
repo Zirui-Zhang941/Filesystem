@@ -1,0 +1,67 @@
+
+.HeaderRegister {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    font-size: 3vw;
+    transform: translate(-50%, -50%);
+}
+
+.backStyle {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.Registerinfo {
+    position: absolute;
+    top: 40%; 
+    left: 45%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+.Registerinfo2 {
+    position: absolute;
+    top: 40%; 
+    left: 55%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+.Registerinfo3 {
+    position: absolute;
+    top: 45%; 
+    left: 45%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+.Registerinfo4 {
+    position: absolute;
+    top: 45%; 
+    left: 55%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+.Registerinfo5 {
+    position: absolute;
+    top: 50%; 
+    left: 43%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+
+.Registerinfo6 {
+    position: absolute;
+    top: 50%; 
+    left: 55%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+
+.Registerinfo7 {
+    position: absolute;
+    top: 60%; 
+    left: 50%; 
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+
